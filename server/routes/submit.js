@@ -38,23 +38,22 @@ router.post('/:name', upload.array('objects'), function(req, res, next) {
                 if (uri == category.name) {
                     
                     // upload to GCS
-                    (async () => {
-                        await firebase.storage.bucket('objects').upload(obj.path, {
-                            gzip: true
-                        });
-                    }) ();
+                    firebase.storage.bucket('objects').upload(obj.path, {
+                        gzip: true
+                    });
 
                     // rename file in GCS to appear "in folder"
-                    (async () => {
-                        await firebase.storage.bucket('objects')
-                                .file(obj.filename)
-                                .move(category.name + '/' + obj.filename);
-                    }) ();
+                    // (async () => {
+                    //     await firebase.storage.bucket('objects')
+                    //             .file(obj.filename)
+                    //             .move(category.name + '/' + obj.filename);
+                    // }) ();
                     
                 } else {
                     // TODO: if we have time, redirect to user for verification
                 }
             }
+            next();
         },
             (err) => { console.log(err.toString()); }
         )
