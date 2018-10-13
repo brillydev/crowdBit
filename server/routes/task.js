@@ -39,17 +39,22 @@ router.get('/:name', function(req, res, next) {
     let dest = '../storage/' + uri;
     let host = 'datalyzer-63388.appspot.com';
 
-    let content = await exec("../gsutil/gsutil -m cp -r gs://" + 
-                               host + '/' +
-                               uri + ' ' + 
-                               dest);
+    (async () => {
+        await exec("../gsutil/gsutil -m cp -r gs://" + 
+                    host + '/' +
+                    uri + ' ' + 
+                    dest);
+    })();
+    
 
     zipFolder(dest, dest + '.zip', (err) => {
         if (err) {
             console.log(err.toString());
         } else {
+            (async () => {
                 await res.sendFile(dest + '.zip', {root: '.'});
-        exec('rm -rf ' + dest + '/zip');
+            }) ();
+            exec('rm -rf ' + dest + '/zip');
         }
     });
 });

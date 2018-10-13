@@ -1,15 +1,22 @@
 var express = require('express');
 var multer = require('multer');
+var bodyparser = require('body-parser');
 var router = express.Router();
+
+var clarifai = require('../clarifai-init');
+var helper = require('../helper');
 
 var firebase = require('../firebase-init');
 var exec = require('child_process').exec;
+var upload = multer({ dest: 'uploads/'});
 
-// PUT /submit/:name - upload a file related to :name
-router.put('/:name', function(req, res, next) {
+// post /submit/:name - upload a file related to :name
+router.post('/:name', upload.array('objects'), function(req, res, next) {
     let uri = req.params.name.toString();
-    let dest = '../storage/' + uri;
-    let host = 'datalyzer-63388.appspot.com';
+
+    for (let obj of req.files) {
+        obj.path
+    }
     
     let content = await exec("../gsutil/gsutil -m cp -r gs://" + 
                                 host + '/' +
