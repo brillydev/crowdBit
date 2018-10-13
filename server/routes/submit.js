@@ -32,20 +32,21 @@ router.post('/:name', upload.array('objects'), function(req, res, next) {
             base64: base64str
         })
         .then(res => {
+            
             for (let category of res.outputs[0].data.concepts) {
                 console.log(category);
                 if (uri == category.name) {
                     
                     // upload to GCS
                     (async () => {
-                        await firebase.bucket('objects').upload(obj.path, {
+                        await firebase.storage.bucket('objects').upload(obj.path, {
                             gzip: true
                         });
                     }) ();
 
                     // rename file in GCS to appear "in folder"
                     (async () => {
-                        await firebase.bucket('objects')
+                        await firebase.storage.bucket('objects')
                                 .file(obj.filename)
                                 .move(category.name + '/' + obj.filename);
                     }) ();

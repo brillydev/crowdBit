@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server/bin/www"
+    "env": "export GOOGLE_APPLICATION_CREDENTIALS='server/gcs-key.json'",
+    "start": "npm run env && node server/bin/www"
   },
   "dependencies": {
     "@google-cloud/storage": "^2.1.0",
