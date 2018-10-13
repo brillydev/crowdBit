@@ -7,5 +7,6 @@ admin.initializeApp({
   databaseURL: "https://datalyzer-63388.firebaseio.com"
 });
 
-var db = admin.firestore();
-var bucket = admin.storage().bucket();
+exports.db = admin.firestore();
+exports.bucket = admin.storage().bucket();
+exports.oauth_token = 'Bearer ya29.Gls1BmiYtopVkhCBDFlImZSrlXmhx3naPQ1p-wv4dWocza32sbJCa7WT2ZEczYHc4ejPrYxeRcIIvtCJQo99nbX8kEW2fNzGUdlQvCOe4OrqtZUTWBbZaK8hihiI';
