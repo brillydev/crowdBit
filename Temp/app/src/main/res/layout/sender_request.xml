@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:outlineAmbientShadowColor="@android:color/black"
+    android:background="@android:color/background_dark">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Developer!"
+        android:id="@+id/texter"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="24dp"
+        android:paddingTop="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What can I do for you today?"
+        android:textSize="24dp"
+        android:textColor="@android:color/holo_blue_bright"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="100dp"
+        android:hint="type here"
+        android:textColorHint="@android:color/holo_blue_bright"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/input"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="8dp"
+        android:text="Send Request"
+        android:id="@+id/button"
+        android:onClick="send"/>
+
+
+</LinearLayout>
