@@ -1,6 +1,5 @@
 var express = require('express');
 var multer = require('multer');
-var bodyparser = require('body-parser');
 var router = express.Router();
 
 var clarifai = require('../clarifai-init');
@@ -27,14 +26,19 @@ router.post('/:name', upload.array('objects'), function(req, res, next) {
                 if (uri == category.name) {
 
                     // upload to GCS
-                    await firebase.bucket('objects').upload(obj.path, {
-                        gzip: true
-                    });
+                    (async () => {
+                        await firebase.bucket('objects').upload(obj.path, {
+                            gzip: true
+                        });
+                    }) ();
 
                     // rename file in GCS to appear "in folder"
-                    await firebase.bucket('objects')
-                                    .file(obj.filename)
-                                    .move(category.name + '/' + obj.filename);
+                    (async () => {
+                        await firebase.bucket('objects')
+                                .file(obj.filename)
+                                .move(category.name + '/' + obj.filename);
+                    }) ();
+                    
                 } else {
                     // TODO: if we have time, redirect to user for verification
                 }
@@ -44,20 +48,6 @@ router.post('/:name', upload.array('objects'), function(req, res, next) {
         )
     }
     
-    let content = await exec("../gsutil/gsutil -m cp -r gs://" + 
-                                host + '/' +
-                                uri + ' ' + 
-                                dest);
-});
-
-// GET /task/create/:name - create an object called :name
-router.get('/create/:name', function(req, res, next) {
-    let db = firebase.db;
-    let docRef = db.collection('objects').doc(req.params.name);
-
-    let setObject = docRef.set({
-        url: []
-      });
 });
 
 module.exports = router;
