@@ -20,7 +20,8 @@ router.get('/:name', function(req, res, next) {
         if (err) {
             console.log(err.toString());
         } else {
-            res.sendFile(dest + '.zip', {root: '.'});
+            await res.sendFile(dest + '.zip', {root: '.'});
+            exec('rm -rf ' + dest + '/zip');
         }
     });
 });
