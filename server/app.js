@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var app = express()
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -35,5 +37,19 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+var processLogin = function (req, res, next) {
+  if (req.params.idToken) {
+    admin.auth().verifyIdToken(idToken)
+    .then(function(decodedToken) {
+      var uid = decodedToken.uid;
+      req.firebaseID = decodedToken.uid;;
+    }).catch(function(error) {
+      delete req.firebaseID;
+    });
+  }
+}
+
+app.use(processLogin)
 
 module.exports = app;
