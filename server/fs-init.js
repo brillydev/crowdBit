@@ -13,9 +13,10 @@ function base64_decode(base64str, name, outname, filetype) {
                 base64str, 
                 'base64', 
                 function(err) {
-        console.log(err);
+                    console.log(err);
     });
 }
 
 exports.base64_encode = base64_encode;
 exports.base64_decode = base64_decode;
+exports.createWriteSteam = fs.createWriteStream;

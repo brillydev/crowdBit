@@ -11,8 +11,23 @@ const get_task = (name) => {return new Promise(function (resolve, reject) {
         client.callFunction("get_obj", [name])
         .then(result => {
             client.close();
-            console.log('here');
-            console.log(result);
+            resolve(result);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        reject(err);
+        client.close();
+    })
+    });
+}
+
+const get_all_tasks = () => {return new Promise(function (resolve, reject) {
+    client.auth.loginWithCredential(new AnonymousCredential())
+    .then(user => {
+        client.callFunction("get_all_obj")
+        .then(result => {
+            client.close();
             resolve(result);
         });
     })
@@ -42,3 +57,4 @@ function submit(name, type, base64) {
 
 exports.submit = submit;
 exports.get_task = get_task;
+exports.get_all_tasks = get_all_tasks;

@@ -29,7 +29,7 @@ var upload = multer({ storage: storage });
 // post /submit/ - upload a file related to name (uri variable)
 router.post('/', upload.array('objects'), function(req, res, next) {
     let uri = req.body.name;
-    console.log(uri);
+    
     for (let obj of req.files) {
         let base64str = fs.base64_encode(obj.path);
         clarifai.clarifaiApp.models.predict(Clarifai.GENERAL_MODEL, {
