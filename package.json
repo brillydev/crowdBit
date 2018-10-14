@@ -6,7 +6,6 @@
     "start": "node server/bin/www"
   },
   "dependencies": {
-    "@google-cloud/storage": "^2.1.0",
     "clarifai": "^2.8.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

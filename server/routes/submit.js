@@ -1,6 +1,7 @@
 var express = require('express');
 var multer = require('multer');
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
 var mime = require('mime-types');
 var router = express.Router();
 
@@ -27,8 +28,8 @@ var upload = multer({ storage: storage });
 
 // post /submit/ - upload a file related to name (uri variable)
 router.post('/', upload.array('objects'), function(req, res, next) {
-    let uri = req.params.id;
-    
+    let uri = req.body.name;
+    console.log(uri);
     for (let obj of req.files) {
         let base64str = fs.base64_encode(obj.path);
         clarifai.clarifaiApp.models.predict(Clarifai.GENERAL_MODEL, {
