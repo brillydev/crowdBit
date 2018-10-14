@@ -5,9 +5,9 @@ var mime = require('mime-types');
 var router = express.Router();
 
 var clarifai = require('../clarifai-init');
-var helper = require('../helper');
+var fs = require('../fs-init');
+var mongo = require('../mongo-init');
 
-var firebase = require('../firebase-init');
 var exec = require('child_process').exec;
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -36,19 +36,8 @@ router.post('/:name', upload.array('objects'), function(req, res, next) {
             for (let category of res.outputs[0].data.concepts) {
                 console.log(category);
                 if (uri == category.name) {
-                    
-                    // upload to GCS
-                    firebase.storage.bucket('objects').upload(obj.path, {
-                        gzip: true
-                    });
-
-                    // rename file in GCS to appear "in folder"
-                    // (async () => {
-                    //     await firebase.storage.bucket('objects')
-                    //             .file(obj.filename)
-                    //             .move(category.name + '/' + obj.filename);
-                    // }) ();
-                    
+                    // upload to mongo
+                    mongo.submit(uri, mime.extension(file.mimetype), base64str)
                 } else {
                     // TODO: if we have time, redirect to user for verification
                 }
