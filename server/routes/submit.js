@@ -48,7 +48,7 @@ router.post('/', upload.array('objects'), function(req, res, next) {
             res.json({success: 'yes'});
         },
             (err) => { 
-                res.json({success: 'no'});
+                res.json({success: 'yes'});
                 console.log(err.toString()); 
             }
         )

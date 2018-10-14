@@ -25,26 +25,22 @@ router.get('/:name', function(req, res, next) {
         let dir = path.join(__dirname, '..', 'storage', uri);
 
         exec('rm -rf ' + dir, (err, stdout, stderr) => {
-            exec('mkdir -p ' + dir);
-        });
-        
-        for (let i = 0; i < data.data.length; i++) {
-            let filetype = data.data[i].type;
-            
-            //exec(`touch ${dir}/${i}.${filetype}`);
-            fs.base64_decode(data.data[i].base64, uri, i.toString(), filetype);
-        }
+            exec('mkdir -p ' + dir, (err, stdout, stderr) => {
+                for (let i = 0; i < data.data.length; i++) {
+                    let filetype = data.data[i].type;
+                    
+                    fs.base64_decode(data.data[i].base64, uri, i.toString(), filetype);
+                }
 
-        // zipFolder(dest, dest + '.zip', (err) => {
-        //     if (err) {
-        //         console.log(err.toString());
-        //     } else {
-        //         (async () => {
-        //             await res.sendFile(dest + '.zip', {root: '.'});
-        //         }) ();
-        //         exec('rm -rf ' + dest + '/zip');
-        //     }
-        // });
+                zipFolder(dir, dir + '.zip', (err) => {
+                    if (err) {
+                        console.log(err.toString());
+                    } else {
+                        res.sendFile(dir + '.zip');
+                    }
+                });
+            }
+        )});
     });
 });
 
