@@ -3,6 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form(action='/submit/'+testid, method='POST')
-    input(type='file' name='multipart/form-data' method='POST')
+  form(action='/submit/' + id, method='POST', enctype='multipart/form-data')
+    input(type='file', name='objects')
     input(type='submit' value="Upload")
