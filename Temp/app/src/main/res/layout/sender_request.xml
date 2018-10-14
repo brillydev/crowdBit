@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="What can I do for you today?"
         android:textSize="24dp"
+        android:id="@+id/texter2"
         android:textColor="@android:color/holo_blue_bright"
         android:layout_gravity="center_horizontal"/>
 
@@ -40,8 +41,15 @@
         android:layout_gravity="center_horizontal"
         android:paddingTop="8dp"
         android:text="Send Request"
-        android:id="@+id/button"
+        android:id="@+id/button1"
         android:onClick="sendRequest"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:visibility="invisible"
+        android:paddingTop="16dp"/>
 
 
 </LinearLayout>
