@@ -126,6 +126,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 statusTextView.setText("Signed out");
                 FirebaseAuth.getInstance().signOut();
             }
+    public void sendRequest(View view)
+    {
+            //do nothing
+    }
 
             
         }//);

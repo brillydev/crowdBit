@@ -31,6 +31,7 @@
         android:hint="type here"
         android:textColorHint="@android:color/holo_blue_bright"
         android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/holo_blue_bright"
         android:id="@+id/input"/>
 
     <Button
@@ -40,7 +41,7 @@
         android:paddingTop="8dp"
         android:text="Send Request"
         android:id="@+id/button"
-        android:onClick="send"/>
+        android:onClick="sendRequest"/>
 
 
 </LinearLayout>
