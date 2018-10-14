@@ -19,28 +19,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What can I do for you today?"
+        android:text="Access your web portal below"
         android:textSize="24dp"
         android:id="@+id/texter2"
+        android:paddingBottom="160dp"
         android:textColor="@android:color/holo_blue_bright"
         android:layout_gravity="center_horizontal"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="100dp"
-        android:hint="type here"
-        android:textColorHint="@android:color/holo_blue_bright"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_blue_bright"
-        android:id="@+id/input"/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingTop="8dp"
-        android:text="Send Request"
+        android:text="Navigate to crowdBit"
         android:id="@+id/button1"
         android:onClick="sendRequest"/>
 

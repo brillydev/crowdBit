@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -119,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // Signed in successfully, show authenticated UI.
             statusTextView.setText("congrats, you're logged in");
             setContentView(R.layout.sender_request);
-            EditText text = findViewById(R.id.input);
+       //     EditText text = findViewById(R.id.input);
 
-            send = text.getText().toString();
+       //     send = text.getText().toString();
 
  //           if(statusTextView.getText().toString()=="congrats, you're logged in") {
  //               Intent intent = new Intent(this,RequestSender.class);
@@ -152,7 +153,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
     public void sendRequest(View view)
     {
-        getRequest();
+
+
+        WebView webview = new WebView(this);
+        setContentView(webview);
+        webview.loadUrl("http://05496671.ngrok.io/");
+
+     /*   getRequest();
         //do nothing
         //use the string variable "send"
         OutputStream out = null;
@@ -170,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             urlConnection.connect();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
     }
     //Get Request
 
