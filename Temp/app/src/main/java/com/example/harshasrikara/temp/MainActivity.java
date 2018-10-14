@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN =9001;
+    public final static String CURRENT_COUNT_KEY = "CurrentCount";
 
 
     @Override
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         signOutButton = findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
+
+
         }
     }
 
@@ -93,6 +97,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             // Signed in successfully, show authenticated UI.
             statusTextView.setText("congrats, you're logged in");
+            setContentView(R.layout.sender_request);
+
+ //           if(statusTextView.getText().toString()=="congrats, you're logged in") {
+ //               Intent intent = new Intent(this,RequestSender.class);
+ //               startActivity(intent);
+ //           }
+
+
+
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -107,14 +121,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     private void signOut() {
-        Auth.GoogleSignInApi.signOut (mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
+//        Auth.GoogleSignInApi.signOut (mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+//            public void onResult(@NonNull Status status) {
                 statusTextView.setText("Signed out");
+                FirebaseAuth.getInstance().signOut();
             }
-        });
-
-
+    public void sendRequest(View view)
+    {
+            //do nothing
     }
-}
+
+            
+        }//);
+
+
+
 
