@@ -1,6 +1,6 @@
 # crowdBit
 
-### Crowsourcing data made simple.
+### Crowdsourcing data made simple.
 
 crowdBit is a platform that users all over the world can contribute to new and existing datasets by uploading their own files. Those files will be validated through a machine learning model (Clarifai) to determine accuracy. Complete, validated datasets can then be nicely downlaoded in zip format.
 
