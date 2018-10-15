@@ -48,7 +48,15 @@ router.post('/', upload.array('objects'), function(req, res, next) {
             res.json({success: 'yes'});
         },
             (err) => { 
-                res.json({success: 'yes'});
+                mongo.get_all_tasks().then((data) => {
+                    let num = Math.floor(Math.random() * (data.length + 1));
+              
+                    if (num !== undefined || num !== NaN) {
+                        num = 0;
+                    }
+              
+                    res.render('index', { title: 'crowdBit', fake: data[num].name});
+                });
                 console.log(err.toString()); 
             }
         )

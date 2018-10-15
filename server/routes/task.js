@@ -9,7 +9,10 @@ var path = require('path');
 
 // GET /task - get a list of jsons of tasks with empty dataset 
 router.get('/', function(req, res, next) {
-    res.json(mongo.get_all_tasks());
+    mongo.get_all_tasks().then((data) => {
+        let num = Math.floor(Math.random() * (data.length + 1));
+        res.render('index', { title: 'crowdBit', fake: num.toString()});
+    });
 });
 
 // GET /task/all - get a list of jsons of all tasks 

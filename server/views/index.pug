@@ -4,8 +4,11 @@ block content
   h1= title
   p Welcome to #{title}
   form(action='/submit/', method='POST', enctype='multipart/form-data')
-    input(type='text' name='name')
+    label #{fake}
+    input(id="name-field" type='text' name='name')
     br()
     br()
     input(type='file', name='objects' multiple)
     input(type='submit' value="Upload")
+    a(id='download-btn' href=`/task/${fake}`)
+      button(type="button") Download
